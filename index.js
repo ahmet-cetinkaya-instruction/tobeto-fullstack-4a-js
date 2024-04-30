@@ -34,6 +34,7 @@ console.log(typeof arrayExample, arrayExample, arrayExample[1]);
 // Object
 const objectExample = {
   name: "Ahmet",
+  surname: "Çetikaya",
   age: 25,
   isStudent: true,
   address: {
@@ -200,3 +201,74 @@ switch (objectExample.age) {
     console.log("Yaş farklı");
 }
 //#endregion
+
+//#region Döngüler
+console.log("----- Döngüler -----");
+
+// For
+for (let i = 0; i < 10; i++) {
+  console.log("For: ", i);
+}
+
+// While
+let j = 0;
+while (j < 10) {
+  console.log("While: ", j);
+  j++;
+}
+
+// Do While
+let k = 0;
+do {
+  console.log("Do While: ", k);
+  k++;
+} while (k < 10);
+
+// For In
+for (let key in objectExample) {
+  console.log("For In: ", key, objectExample[key]);
+}
+for (let index in arrayExample) {
+  console.log("For In: ", index, arrayExample[index]);
+}
+
+// For Of
+for (let value of arrayExample) {
+  console.log("For Of: ", value);
+}
+// forEach
+arrayExample.forEach((value, index) => {
+  console.log("ForEach: ", index, value);
+});
+//#endregion
+
+//#region Destructuring ve Rest/Spread
+console.log("----- Destructuring ve Rest/Spread -----");
+
+// const name = objectExample.name;
+// const age = objectExample.age;
+// const city = objectExample.address.city;
+const {
+  name: userName,
+  age,
+  address: { city },
+} = objectExample;
+console.log("Destructuring: ", userName, age, city);
+
+// const first = arrayExample[0];
+// const second = arrayExample[1];
+const [first, second, ...rest] = arrayExample; // [1, "ahmet", true, {}, null, "yeni eleman"]
+console.log("Destructuring: ", first, second, rest);
+
+// console.log("Spread: ", arrayExample[0], arrayExample[1], arrayExample[2], arrayExample[3], arrayExample[4], arrayExample[5]);
+console.log("Spread: ", ...arrayExample);
+
+// const arrayExample2 = [arrayExample[0], arrayExample[1], arrayExample[2], arrayExample[3], arrayExample[4], arrayExample[5], "yeni eleman2"]; // Yeni bir referans oluşturur
+// const arrayExample2 = arrayExample.concat("yeni eleman2"); // Yeni bir referans oluşturur
+const arrayExample2 = [...arrayExample, "yeni eleman2"]; // Yeni bir referans oluşturur
+console.log("Spread: ", arrayExample2);
+
+// const objectExample2 = { name: objectExample.name, surname: objectExample.surname, age: 30, isStudent: objectExample.isStudent, address: objectExample.address, identity: "1234567890" }; // Yeni bir referans oluşturur
+// const objectExample2 = Object.assign({}, objectExample, { age: 30, identity: "1234567890" })
+const objectExample2 = { ...objectExample, age: 30, identity: "1234567890" }; // Yeni bir referans oluşturur
+console.log("Spread: ", objectExample2);
