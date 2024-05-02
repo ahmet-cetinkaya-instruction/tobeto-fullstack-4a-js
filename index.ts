@@ -351,7 +351,7 @@ do {
 
 // For In
 for (let key in objectExample) {
-  console.log("For In: ", key, objectExample[key]);
+  console.log("For In: ", key, (objectExample as any)[key]);
 }
 for (let index in arrayExample) {
   console.log("For In: ", index, arrayExample[index]);
@@ -382,7 +382,7 @@ console.log("Destructuring: ", userName, age, city);
 
 // const first = arrayExample[0];
 // const second = arrayExample[1];
-const [first, second, ...rest] : unknown[] = arrayExample; // [1, "ahmet", true, {}, null, "yeni eleman"]
+const [first, second, ...rest]: unknown[] = arrayExample; // [1, "ahmet", true, {}, null, "yeni eleman"]
 console.log("Destructuring: ", first, second, rest);
 
 // console.log("Spread: ", arrayExample[0], arrayExample[1], arrayExample[2], arrayExample[3], arrayExample[4], arrayExample[5]);
@@ -390,7 +390,7 @@ console.log("Spread: ", ...arrayExample);
 
 // const arrayExample2 = [arrayExample[0], arrayExample[1], arrayExample[2], arrayExample[3], arrayExample[4], arrayExample[5], "yeni eleman2"]; // Yeni bir referans oluşturur
 // const arrayExample2 = arrayExample.concat("yeni eleman2"); // Yeni bir referans oluşturur
-const arrayExample2 : unknown[] = [...arrayExample, "yeni eleman2"]; // Yeni bir referans oluşturur
+const arrayExample2: unknown[] = [...arrayExample, "yeni eleman2"]; // Yeni bir referans oluşturur
 console.log("Spread: ", arrayExample2);
 
 // const objectExample2 = { name: objectExample.name, surname: objectExample.surname, age: 30, isStudent: objectExample.isStudent, address: objectExample.address, identity: "1234567890" }; // Yeni bir referans oluşturur
