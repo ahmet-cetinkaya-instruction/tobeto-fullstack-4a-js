@@ -77,7 +77,7 @@ const objectExample: {
   name: string;
   surname: string;
   age: number;
-  isStudent: boolean;
+  isStudent: boolean | undefined;
   address: {
     city: string;
     district: string;
@@ -231,13 +231,13 @@ console.log("Üs alma: ", number1Example ** number2Example);
 // Karşılaştırma Operatörleri
 console.log("----- Karşılaştırma Operatörleri -----");
 
-// == : Eşit mi
-console.log('"3" == 3', "3" == 3); // = = // Tip dönüşümü yapar, değerler eşitse true döner
-console.log('"3" === 3', "3" === 3); // = = = // Tip dönüşümü yapmaz, değerler ve tipler eşitse true döner
+// // == : Eşit mi
+// console.log('"3" == 3', "3" == 3); // = = // Tip dönüşümü yapar, değerler eşitse true döner
+// console.log('"3" === 3', "3" === 3); // = = = // Tip dönüşümü yapmaz, değerler ve tipler eşitse true döner
 
-// != : Eşit değil mi
-console.log('"3" != 3', "3" != 3); // ! = // Tip dönüşümü yapar, değerler eşit değilse true döner
-console.log('"3" !== 3', "3" !== 3); // ! = = // Tip dönüşümü yapmaz, değerler ve tipler eşit değilse true döner
+// // != : Eşit değil mi
+// console.log('"3" != 3', "3" != 3); // ! = // Tip dönüşümü yapar, değerler eşit değilse true döner
+// console.log('"3" !== 3', "3" !== 3); // ! = = // Tip dönüşümü yapmaz, değerler ve tipler eşit değilse true döner
 
 // > : Büyük mü
 console.log("Büyük mü: ", number1Example > number2Example);
@@ -287,14 +287,18 @@ console.log("----- Diğer Operatörler -----");
 console.log("Delete öncesi: ", objectExample.isStudent);
 delete objectExample.isStudent;
 console.log("Delete sonrası: ", objectExample.isStudent);
+
 // in : İçinde var mı
 console.log("İçinde var mı: ", "name" in objectExample);
+
 // instanceof : İnstance mı
 console.log("İnstance mı: ", objectExample instanceof Object);
 console.log("İnstance mı: ", objectExample instanceof Array);
+
 // new : Yeni
 const newObjectExample = new Object();
 console.log("Yeni: ", newObjectExample);
+
 // typeof : Türü
 console.log("Türü: ", typeof objectExample);
 
@@ -378,7 +382,7 @@ console.log("Destructuring: ", userName, age, city);
 
 // const first = arrayExample[0];
 // const second = arrayExample[1];
-const [first, second, ...rest] = arrayExample; // [1, "ahmet", true, {}, null, "yeni eleman"]
+const [first, second, ...rest] : unknown[] = arrayExample; // [1, "ahmet", true, {}, null, "yeni eleman"]
 console.log("Destructuring: ", first, second, rest);
 
 // console.log("Spread: ", arrayExample[0], arrayExample[1], arrayExample[2], arrayExample[3], arrayExample[4], arrayExample[5]);
@@ -386,7 +390,7 @@ console.log("Spread: ", ...arrayExample);
 
 // const arrayExample2 = [arrayExample[0], arrayExample[1], arrayExample[2], arrayExample[3], arrayExample[4], arrayExample[5], "yeni eleman2"]; // Yeni bir referans oluşturur
 // const arrayExample2 = arrayExample.concat("yeni eleman2"); // Yeni bir referans oluşturur
-const arrayExample2 = [...arrayExample, "yeni eleman2"]; // Yeni bir referans oluşturur
+const arrayExample2 : unknown[] = [...arrayExample, "yeni eleman2"]; // Yeni bir referans oluşturur
 console.log("Spread: ", arrayExample2);
 
 // const objectExample2 = { name: objectExample.name, surname: objectExample.surname, age: 30, isStudent: objectExample.isStudent, address: objectExample.address, identity: "1234567890" }; // Yeni bir referans oluşturur
