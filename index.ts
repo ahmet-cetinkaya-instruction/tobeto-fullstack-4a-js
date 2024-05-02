@@ -186,7 +186,7 @@ const customObjectExample3 = new CustomClass({
 });
 
 // Function
-function sum(a: number, b: number) : number {
+function sum(a: number, b: number): number {
   return a + b;
 }
 console.log(typeof sum, sum(5, 10));
@@ -195,12 +195,12 @@ const sumExample = sum;
 console.log(typeof sum, sumExample(5, 10));
 
 // Date
-const dateExample : Date = new Date();
+const dateExample: Date = new Date();
 console.log(typeof dateExample, dateExample);
 
 // RegExp
 const regExpStringExample = "abc";
-const regExpExample : RegExp = /abc/;
+const regExpExample: RegExp = /abc/;
 // const regExpExample2 = new RegExp("abc");
 console.log(typeof regExpExample, regExpExample.test(regExpStringExample));
 
