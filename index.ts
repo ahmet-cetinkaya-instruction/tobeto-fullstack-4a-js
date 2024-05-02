@@ -411,54 +411,74 @@ try {
 
 //#region OOP
 
-// Abstract Class
-class Human {
-  // Abstract Method
-  getName() {
-    throw new Error("You have to implement the method");
-  }
+// Interface
+interface IHuman {
+  getName(): string;
 }
 
-class Person extends Human { // OOP'nin 1. özelliği Sınıf ve Nesneler
-  _name;
-  _age;
-  
-  constructor(name, age) {
+// Abstract Class
+abstract class Human {
+  // Abstract Method
+  abstract getName(): string;
+}
+
+class Person extends Human {
+  // OOP'nin 1. özelliği Sınıf ve Nesneler
+  private _name: string;
+  protected _age: number;
+
+  constructor(name: string, age: number) {
     super(); // Abstract sınıfın constructor'ını çağırır
     // this: Oluşturulan nesneyi temsil eder
     this._name = name;
     this._age = age;
   }
 
-  getName() { // OOP'nin 2. özelliği Kapsülleme
+  // Varsayılan erişim belirteci: public
+  override getName(): string {
+    // OOP'nin 2. özelliği Kapsülleme
     return this._name;
   }
 }
 
-class Student extends Person { // OOP'nin 3. özelliği Kalıtım
-  _school;
-  
-  constructor(name, age, school) {
+// implements: Bir interface'in veya sınfın içindeki property ve metotları implement edilmesini zorlar.
+class Person2 implements IHuman {
+  getName() : string {
+    throw new Error("Method not implemented.");
+  }
+}
+
+class Student extends Person {
+  // OOP'nin 3. özelliği Kalıtım
+  // private _school : string;
+
+  constructor(name: string, age: number, private school: string) {
     // super: Üst sınıfı gösterir
     super(name, age); // Üst sınıfın constructor'ını çağırır
 
     // this.getName(); // Üst sınıfın metotlarını çağırabilir
     // super.getName(); // Üst sınıfın metotlarını çağırabilir
 
-    this._school = school;
+    // this._school = school;
   }
-  
+
   // Overriding: Üst sınıftaki metodu ezer
-  getName() { // OOP'nin 4. özelliği Polimorfizm (Çok biçimlilik) : Aynı isimde farklı işlev
+  getName() {
+    // OOP'nin 4. özelliği Polimorfizm (Çok biçimlilik) : Aynı isimde farklı işlev
     return "Öğrenci: " + super.getName(); // Üst sınıfın metotlarını çağırabilir
   }
 
   getSchool() {
-    return this._school;
+    return this.school;
   }
 }
 
-const human = (new Student("Ahmet", 25));
+let human: Human = new Student("Ahmet", 25, "Ankara Üniversitesi");
 console.log(human.getName());
+human = new Person("Ebubekir", 30);
+console.log(human.getName());
+
+const human2: IHuman = new Person("Ahmet", 25);
+console.log(human2.getName());
 
 //#endregion
