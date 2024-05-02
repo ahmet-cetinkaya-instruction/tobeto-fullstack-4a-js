@@ -4,35 +4,86 @@ console.log("Helloworld");
 console.log("----- Değişkenler -----");
 
 // Number
-let number1Example = 10;
-let number2Example = 3.14;
+let number1Example: number = 10;
+// number1Example = "20"; // Hata verir
+let number2Example: number = 3.14;
 console.log(typeof number1Example, number1Example);
 console.log(typeof number2Example, number2Example);
 
 // String
-const stringExample = "Ahmet";
+let stringExample: string = "Ahmet";
+// let stringExample : "Ahmet" | "Ebubekir" = "Ahmet";
 console.log(typeof stringExample, stringExample);
 
 // Boolean
-const booleanExample = true;
+const booleanExample: boolean = true;
 console.log(typeof booleanExample, booleanExample);
 
 // null: Boş değer geçildiğini belirtir.
-let nullExample = null;
+let nullExample: null = null;
 console.log(typeof nullExample, nullExample);
 
 // undefined: Herhangi bir değer geçilmediğini belirtir.
-let undefinedExample;
+let undefinedExample: undefined;
 console.log(typeof undefinedExample, undefinedExample);
 
+let multipleTypeExample: number | string | null | undefined = undefined;
+multipleTypeExample = 5;
+multipleTypeExample = "Ahmet";
+multipleTypeExample = null;
+
+type CustomType = number | string | null | undefined;
+let customTypeExample: CustomType = undefined;
+
+// any: Herhangi bir türde değer alabilir.
+let anyTypeExample: any = 5;
+anyTypeExample = "Ahmet";
+anyTypeExample = true;
+
+// unknown: any'den farkı, tipin belirsiz olduğu durumlarda kullanılır.
+let unknownTypeExample: unknown = 5;
+unknownTypeExample = "Ahmet";
+
+// never: Hiçbir değer alamaz.
+let neverTypeExample: never;
+// neverTypeExample = 5; // Hata verir
+
 // Array
-const arrayExample = [1, "ahmet", true, {}, null];
+const arrayExample: unknown[] = [1, "ahmet", true, {}, null];
 // const arr2 = new Array(1, 2, 3, 4, 5);
 arrayExample.push("yeni eleman");
 console.log(typeof arrayExample, arrayExample, arrayExample[1]);
 
+const stringArrayExample: string[] = ["Ahmet", "Ebubekir"];
+console.log(
+  typeof stringArrayExample,
+  stringArrayExample,
+  stringArrayExample[1]
+);
+
+// Tuple
+const tupleExample: [number, string, boolean] = [1, "Ahmet", true];
+
+// Enum
+enum Color {
+  Red = 1, // Değeri sayi veya string olabilir
+  Green = 2,
+  Blue,
+}
+// Color.Green
+
 // Object
-const objectExample = {
+const objectExample: {
+  name: string;
+  surname: string;
+  age: number;
+  isStudent: boolean;
+  address: {
+    city: string;
+    district: string;
+  };
+  // getFullName: () => string
+} = {
   name: "Ahmet",
   surname: "Çetikaya",
   age: 25,
@@ -41,10 +92,10 @@ const objectExample = {
     city: "Ankara",
     district: "Çankaya",
   },
-  // Arrow function
-  getFullName: () => {
-    return this.name + " " + this.surname;
-  },
+  // // Arrow function
+  // getFullName: () => {
+  //   return this['name'] + " " + globalThis.surname;
+  // },
 };
 // const objectExample2 = new Object();
 // objectExample2.name = "Ahmet";
@@ -64,8 +115,78 @@ console.log(
   objectExample["name"]
 );
 
+type CustomObjectType = {
+  name: string;
+  surname: string;
+  age: number;
+  isStudent: boolean;
+  address: {
+    city: string;
+    district: string;
+  };
+};
+const customObjectExample: CustomObjectType = {
+  name: "Ahmet",
+  surname: "Çetikaya",
+  age: 25,
+  isStudent: true,
+  address: {
+    city: "Ankara",
+    district: "Çankaya",
+  },
+};
+
+interface CustomObjectType2 {
+  name: string;
+  surname: string;
+  age: number;
+  isStudent: boolean;
+  address: {
+    city: string;
+    district: string;
+  };
+}
+const customObjectExample2: CustomObjectType2 = {
+  name: "Ahmet",
+  surname: "Çetikaya",
+  age: 25,
+  isStudent: true,
+  address: {
+    city: "Ankara",
+    district: "Çankaya",
+  },
+};
+class CustomClass implements CustomObjectType2 {
+  name: string;
+  surname: string;
+  age: number;
+  isStudent: boolean;
+  address: {
+    city: string;
+    district: string;
+  };
+
+  constructor({ name, surname, age, isStudent, address }: CustomObjectType2) {
+    this.name = name;
+    this.surname = surname;
+    this.age = age;
+    this.isStudent = isStudent;
+    this.address = address;
+  }
+}
+const customObjectExample3 = new CustomClass({
+  name: "Ahmet",
+  surname: "Çetikaya",
+  age: 25,
+  isStudent: true,
+  address: {
+    city: "Ankara",
+    district: "Çankaya",
+  },
+});
+
 // Function
-function sum(a, b) {
+function sum(a: number, b: number) : number {
   return a + b;
 }
 console.log(typeof sum, sum(5, 10));
@@ -74,12 +195,12 @@ const sumExample = sum;
 console.log(typeof sum, sumExample(5, 10));
 
 // Date
-const dateExample = new Date();
+const dateExample : Date = new Date();
 console.log(typeof dateExample, dateExample);
 
 // RegExp
 const regExpStringExample = "abc";
-const regExpExample = /abc/;
+const regExpExample : RegExp = /abc/;
 // const regExpExample2 = new RegExp("abc");
 console.log(typeof regExpExample, regExpExample.test(regExpStringExample));
 
